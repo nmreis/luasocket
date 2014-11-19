@@ -22,6 +22,7 @@ dependencies = {
 local function make_plat(plat)
 	local defines = {
 	  unix = {
+		 "LUA_VERSION_NUM=522",
 		 "LUASOCKET_DEBUG",
 		 "LUASOCKET_API=__attribute__((visibility(\"default\")))",
 		 "UNIX_API=__attribute__((visibility(\"default\")))",
