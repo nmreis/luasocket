@@ -7,10 +7,6 @@
 #include "lua.h"
 #include "lauxlib.h"
 
-#if !defined(LUA_VERSION_NUM) || (LUA_VERSION_NUM < 501)
-#include "compat-5.1.h"
-#endif
-
 #include "mime.h"
 
 /*=========================================================================*\
@@ -81,12 +77,8 @@ static UC b64unbase[256];
 \*-------------------------------------------------------------------------*/
 MIME_API int luaopen_mime_core(lua_State *L)
 {
-#if LUA_VERSION_NUM > 501 && !defined(LUA_COMPAT_MODULE)
     lua_newtable(L);
     luaL_setfuncs(L, func, 0);
-#else
-    luaL_openlib(L, "mime", func, 0);
-#endif
     /* make version string available to scripts */
     lua_pushstring(L, "_VERSION");
     lua_pushstring(L, MIME_VERSION);
